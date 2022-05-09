@@ -1,5 +1,5 @@
 {
-  "name": "vite-plugin-style-pxtorem",
+  "name": "vite-plugin-vue-style-pxtorem",
   "version": "1.0.0",
   "description": "转换vue模板内联样式px到rem",
   "main": "dist/index.js",
@@ -9,6 +9,12 @@
   },
   "author": "yimeng",
   "license": "MIT",
+  "keywords": [
+    "vite",
+    "vue",
+    "plugin",
+    "pxtorem"
+  ],
   "files": [
     "dist"
   ],
