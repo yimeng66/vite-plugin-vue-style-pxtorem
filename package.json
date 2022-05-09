@@ -1,0 +1,24 @@
+{
+  "name": "vite-plugin-style-pxtorem",
+  "version": "1.0.0",
+  "description": "转换vue模板内联样式px到rem",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "author": "yimeng",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.2",
+    "@rollup/pluginutils": "^4.2.1",
+    "@types/node": "^17.0.31",
+    "rollup": "^2.72.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.6.4",
+    "vite": "^2.9.8"
+  }
+}
