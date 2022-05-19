@@ -1,20 +1,21 @@
 import typescript from "@rollup/plugin-typescript";
+import { terser } from "rollup-plugin-terser";
 
-import pkg from "./package.json";
+import { dependencies, main, module } from "./package.json";
 
 export default {
   input: "src/index.ts",
-  external: [/node_modules/],
+  external: Object.keys(dependencies),
   output: [
     {
       format: "cjs",
-      file: pkg.main,
+      file: main,
       exports: "auto",
     },
     {
       format: "esm",
-      file: pkg.module,
+      file: module,
     },
   ],
-  plugins: [typescript({ sourceMap: false })],
+  plugins: [typescript({ sourceMap: false }), terser()],
 };

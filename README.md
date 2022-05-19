@@ -20,6 +20,9 @@ Default:
     exclude: []
 }
 ```
+## 注意
+1.此插件只对vue文件中的<template>标签内的内容做转换
+2.此插件必须在@vitejs/plugin-vue之前，因为vue文件会被@vitejs/plugin-vue编译，后续无法通过/<template>([\s\S]+)<\/template>/gi匹配到。
 
 ## 参考插件
 [postcss-pxtorem](https://github.com/cuth/postcss-pxtorem)

@@ -1,4 +1,4 @@
-import { Plugin } from "vite";
+import type { Plugin } from "vite";
 import { createFilter } from "@rollup/pluginutils";
 
 export interface Options {
@@ -8,6 +8,7 @@ export interface Options {
   exclude?: [];
 }
 
+const templateRegex = /<template>([\s\S]+)<\/template>/gi;
 const pxRegex = /(\d+(\.\d+)?)px/g;
 
 function toFixed(number: number, precision: number) {
@@ -44,13 +45,19 @@ export default function px2RemPlugin(opt: Options): Plugin {
   return {
     name: "style-pxtorem",
     transform(code, id) {
-      if (filter(id) && pxRegex.test(code)) {
-        const { rootValue, unitPrecision, minPixelValue } = options;
+      if (filter(id) && templateRegex.test(code)) {
+        let templateStr = code.match(templateRegex)?.[0] || "";
 
-        return code.replace(
-          pxRegex,
-          createPxReplace(rootValue, unitPrecision, minPixelValue)
-        );
+        if (pxRegex.test(templateStr)) {
+          const { rootValue, unitPrecision, minPixelValue } = options;
+
+          templateStr = templateStr.replace(
+            pxRegex,
+            createPxReplace(rootValue, unitPrecision, minPixelValue)
+          );
+
+          return code.replace(templateRegex, templateStr);
+        }
       }
     },
   };
